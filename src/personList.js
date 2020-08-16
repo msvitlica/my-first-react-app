@@ -1,6 +1,5 @@
 import React from 'react';
 class PersonList extends React.Component {
-
     render() {
         return (
             <div>

@@ -13,22 +13,16 @@ class App extends React.Component{
     
     }
   }
-  updateFname(lastName,value){
+  updateInput(name,value){
     this.setState({
-      [lastName]:value,
+      [name]:value,
     });
   }
-  updateLname(lastName,value){
-    this.setState({
- [lastName]:value,
-    });
-  }
- 
   addPreson(){
     const newPerson={
       id: uuid(),
-      firstName: this.state.firstName.slice(),
-      lastName: this.state.lastName.slice(),
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
     }
    console.log(newPerson);
    const personList=[...this.state.personList];
@@ -38,7 +32,7 @@ class App extends React.Component{
      lastName:'',
      personList,
    })
-console.log(personList);
+//console.log(personList);
   }
   render (){
     return(
@@ -47,17 +41,15 @@ console.log(personList);
         <br></br>
         <label>First Name:  <input
         type='text'
-       //placeholder= 'First Name'
         value= {this.state.firstName}
-        onChange={el=>this.updateFname('firstName',el.target.value)}
+        onChange={el=>this.updateInput('firstName',el.target.value)}
         />
         </label>
         <br></br>
         <label>Last Name: <input
         type='text'
-        //placeholder= 'Last Name'
         value= {this.state.lastName}
-        onChange={el=>this.updateFname('lastName',el.target.value)}
+        onChange={el=>this.updateInput('lastName',el.target.value)}
         />
         </label>
         <br></br>
@@ -67,7 +59,6 @@ console.log(personList);
       >
         Add</button> 
         </div>
-      
     );
   }
   }
