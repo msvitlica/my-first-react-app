@@ -1,14 +1,12 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Header from './components/Header';
-import PersonsList from './components/PersonsList';
-import AddPersonForm from './components/AddPersonForm';
+import InputPersonForm from './components/InputPersonForm';
+import Table from './components/Table';
 
 class App extends React.Component {
   state = {
     persons: []
   }
-
   addPerson = (personObj) => {
     personObj.id = uuidv4();
     this.setState({ persons: [...this.state.persons, personObj] });
@@ -17,9 +15,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AddPersonForm addPerson={this.addPerson} />
-        <Header />
-        <PersonsList persons={this.state.persons} />
+        <InputPersonForm addPerson={this.addPerson}/>
+        <Table persons={this.state.persons}/>
       </div>
     );
   }
