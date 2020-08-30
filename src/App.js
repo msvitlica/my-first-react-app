@@ -6,14 +6,18 @@ import Gender from './components/Gender.js';
 import Input from './components/Input.js';
 import Table from './components/Table.js';
 import Header from './components/Header.js'
+import DatePicker from './components/DatePicker.js'
 
 export default class App extends React.Component {
     constructor(props){
         super(props);
+        var date = new Date();
+        var formatedDate = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`
         this.state={
             firstName:'',
             lastName:'',
-            birthDate:'',
+            currDate: formatedDate,
+            birthDate: '',
             gender:'',
             list:[],
         }
@@ -31,11 +35,13 @@ const newEntry={
    this.setState({
     firstName:'',
     lastName:'',
+    currDate:'',
     birthDate:'',
     gender:'', 
     list
    })
    console.log(list);
+   console.log(this.state.currDate)
 }
 updateInput(key,value){
     this.setState({
@@ -47,7 +53,6 @@ updateInput(key,value){
       [key]:value
     })
   }
-
   render() {
     return (
       <React.Fragment>
@@ -59,6 +64,13 @@ updateInput(key,value){
         changed1={el=>this.updateInput('firstName',el.target.value)}
         value2={this.state.lastName}
         changed2={el=>this.updateInput('lastName',el.target.value)} />
+                <br></br>
+                <br></br>
+                <DatePicker
+                date={ this.state.birthDate}
+                startingDate={this.state.currDate}
+                changed={el=>this.handleChange('birthDate',el.target.value)}
+                ></DatePicker>
                 <br></br>
                 <br></br>
               <Gender 
