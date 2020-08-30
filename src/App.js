@@ -1,65 +1,79 @@
 import React from 'react';
-import uuid from 'react-uuid'
-import PersonList from'./personList'
-import './App.css'
+import uuid from 'react-uuid';
+import { Container} from '@material-ui/core';
+import SaveButton from './components/SaveButton.js'
+import Gender from './components/Gender.js';
+import Input from './components/Input.js';
+import Table from './components/Table.js';
+import Header from './components/Header.js'
 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    this.state={
-      firstName:'',
-      lastName:'',
-      personList:[],
-    
+export default class App extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            firstName:'',
+            lastName:'',
+            birthDate:'',
+            gender:'',
+            list:[],
+        }
     }
-  }
-  updateInput(name,value){
+    saveBtn(){
+const newEntry={
+    id:uuid(),
+    firstName:this.state.firstName,
+    lastName:this.state.lastName,
+    birthDate:this.state.birthDate,
+    gender:this.state.gender,  
+   }
+   const list=[...this.state.list];
+   list.push(newEntry);
+   this.setState({
+    firstName:'',
+    lastName:'',
+    birthDate:'',
+    gender:'', 
+    list
+   })
+   console.log(list);
+}
+updateInput(key,value){
     this.setState({
-      [name]:value,
+        [key]:value
     });
   }
-  addPreson(){
-    const newPerson={
-      id: uuid(),
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+  handleChange(key,value){
+    this.setState({
+      [key]:value
+    })
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+           <Header></Header>
+           <br></br>
+           <Container maxWidth="sm">
+        <Input
+        value1={this.state.firstName}
+        changed1={el=>this.updateInput('firstName',el.target.value)}
+        value2={this.state.lastName}
+        changed2={el=>this.updateInput('lastName',el.target.value)} />
+                <br></br>
+                <br></br>
+              <Gender 
+              gender={this.state.gender}
+              changed={el=>this.handleChange('gender',el.target.value)}>
+              </Gender>
+                <br></br>
+                <br></br>
+                <SaveButton clicked={()=>this.saveBtn()}/>
+                <Table
+                list={this.state.list}>
+                </Table>
+                </Container>
+           </React.Fragment>
+        )
     }
-   console.log(newPerson);
-   const personList=[...this.state.personList];
-   personList.push(newPerson);
-   this.setState({
-     firstName:'',
-     lastName:'',
-     personList,
-   })
-//console.log(personList);
-  }
-  render (){
-    return(
-    <div className="App">
-     <PersonList personList={this.state.personList}></PersonList>
-        <br></br>
-        <label>First Name:  <input
-        type='text'
-        value= {this.state.firstName}
-        onChange={el=>this.updateInput('firstName',el.target.value)}
-        />
-        </label>
-        <br></br>
-        <label>Last Name: <input
-        type='text'
-        value= {this.state.lastName}
-        onChange={el=>this.updateInput('lastName',el.target.value)}
-        />
-        </label>
-        <br></br>
-        <br></br>
-      <button
-      onClick={()=>this.addPreson()}
-      >
-        Add</button> 
-        </div>
-    );
-  }
-  }
-export default App
+}
+
