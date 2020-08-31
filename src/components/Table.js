@@ -1,9 +1,10 @@
 import React from 'react'
-import { TableContainer, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
-export default class Table extends React.Component {
+import { Table,TableContainer,Paper, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
+export default class InfoTable extends React.Component {
   render() {
     return (
-      <TableContainer>
+      <TableContainer component={Paper}>
+         <Table aria-label="simple table">
         <TableHead>
        <TableRow>
          <TableCell>First Name</TableCell>
@@ -18,12 +19,13 @@ export default class Table extends React.Component {
            <TableCell >
              {el.firstName}
            </TableCell>
-           <TableCell align="right">{el.lastName}</TableCell>
-           <TableCell align="right">{el.birthDate}</TableCell>
-           <TableCell align="right">{el.gender}</TableCell>
+           <TableCell >{el.lastName}</TableCell>
+           <TableCell >{el.birthDate}</TableCell>
+           <TableCell >{el.gender}</TableCell>
          </TableRow>
        )}
      </TableBody>
+     </Table>
    </TableContainer>
     )
   }

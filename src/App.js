@@ -6,17 +6,17 @@ import Gender from './components/Gender.js';
 import Input from './components/Input.js';
 import Table from './components/Table.js';
 import Header from './components/Header.js'
-import DatePicker from './components/DatePicker.js'
+import DatePickers from './components/DatePicker.js'
 
 export default class App extends React.Component {
     constructor(props){
         super(props);
-        var date = new Date();
-        var formatedDate = `${date.getMonth()+1}-${date.getDate()}-${date.getFullYear()}`
+       // var date = new Date();
+       // var formatedDate = `${date.getMonth()+1}/${date.getDate()}/${date.getFullYear()}`
         this.state={
             firstName:'',
             lastName:'',
-            currDate: formatedDate,
+            currDate: '',
             birthDate: '',
             gender:'',
             list:[],
@@ -66,11 +66,11 @@ updateInput(key,value){
         changed2={el=>this.updateInput('lastName',el.target.value)} />
                 <br></br>
                 <br></br>
-                <DatePicker
-                date={ this.state.birthDate}
-                startingDate={this.state.currDate}
+                <DatePickers
+                //date={ this.state.birthDate}
+                currDate={this.state.currDate}
                 changed={el=>this.handleChange('birthDate',el.target.value)}
-                ></DatePicker>
+                ></DatePickers>
                 <br></br>
                 <br></br>
               <Gender 

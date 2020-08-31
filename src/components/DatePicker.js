@@ -1,21 +1,21 @@
 import React from 'react';
-import TextField from '@material-ui/core/TextField';
+import {TextField}from '@material-ui/core'
 
 export default class DatePickers extends React.Component {
 
   render(){
   return (
     <form >
-      <TextField
-        label="Birthday"
-        type="date"
-        selected={this.props.startingDate}
-        value={this.props.date}
-        onChange={this.props.changed}
-       InputLabelProps={{
-          shrink: true,
-        }}
-      />
+        <TextField
+      label="Birthday"
+      type="date"
+      value={this.props.date}
+      onChange={this.props.changed}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      >{this.props.currDate}
+      </TextField>
     </form>
   );
   }
