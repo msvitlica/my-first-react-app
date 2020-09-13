@@ -2,7 +2,6 @@ import React from 'react';
 import {TextField}from '@material-ui/core'
 
 export default class DatePickers extends React.Component {
-
   render(){
   return (
     <form >
@@ -14,7 +13,7 @@ export default class DatePickers extends React.Component {
       InputLabelProps={{
         shrink: true,
       }}
-      >{this.props.currDate}
+      >
       </TextField>
     </form>
   );
