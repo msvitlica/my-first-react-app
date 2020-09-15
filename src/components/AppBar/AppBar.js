@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Typography,Button } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme) => ({
@@ -23,9 +23,8 @@ export default function Header(){
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
               </IconButton>
               <Typography variant="h6" className={classes.title} >
-                User Info
+                Training Session
               </Typography>
-              <Button color="inherit">Login</Button>
               <AccountCircleIcon></AccountCircleIcon>
             </Toolbar>
           </AppBar>
