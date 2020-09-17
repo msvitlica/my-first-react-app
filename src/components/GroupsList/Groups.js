@@ -8,8 +8,7 @@ export default class SortedGroups extends React.Component {
                 <Card>
                     <CardContent>
                         <Typography color="textPrimary" gutterBottom>
-                            13-17h
-                        </Typography>
+                            13-17h </Typography>
                         <Typography className='coachName' color="textPrimary" >Coach: Sinisa Kovacevic</Typography>
                     </CardContent>
                     <CardActions>
@@ -20,8 +19,7 @@ export default class SortedGroups extends React.Component {
                 <Card>
                     <CardContent>
                         <Typography color="textPrimary" gutterBottom>
-                            20-21h
-          </Typography>
+                            20-21h </Typography>
                     </CardContent>
                     <CardActions>
                         <Button size="small">Group4</Button>
