@@ -1,22 +1,33 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import InputPersonForm from './components/InputPersonForm';
-import Table from './components/Table';
+import './components/yourClub.css';
+import AppBar from './components/AppBar';
+import TraningSessions from './components/TrainingSession';
 
 class App extends React.Component {
   state = {
-    persons: []
+    classes: [
+      {
+        group: 'Grupa 2',
+        hours: '13 - 15 h',
+        coach: 'Siniša Kovačević'
+      },
+      {
+        group: 'Grupa 1',
+        hours: '11 - 13 h',
+        coach: 'Siniša Kovačević'
+      },
+      {
+        group: 'Grupa 3',
+        hours: '20 - 22 h',
+        coach: 'Siniša Kovačević'
+      }
+    ]
   }
-  addPerson = (personObj) => {
-    personObj.id = uuidv4();
-    this.setState({ persons: [...this.state.persons, personObj] });
-  }
-
   render() {
     return (
       <div>
-        <InputPersonForm addPerson={this.addPerson}/>
-        <Table persons={this.state.persons}/>
+        <AppBar />
+        <TraningSessions classes={this.state.classes}/>
       </div>
     );
   }

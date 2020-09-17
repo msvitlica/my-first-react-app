@@ -1,9 +1,0 @@
-form {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    margin: 5% auto;
-}
-form .marginTop {
-    margin-top: 5%;
-}
