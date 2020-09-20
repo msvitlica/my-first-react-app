@@ -4,6 +4,9 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import MenuIcon from '@material-ui/icons/Menu';
 
 export default class Header extends React.Component {
+  prevStep= e =>{
+    this.props.prevStep();
+  }
   render() {
     return (
       <div>

@@ -1,0 +1,37 @@
+// app.js
+ <Grid item>
+        <GroupsList
+          showAppointments={(this.showAppointments)}
+        ></GroupsList>
+        <div>
+          <Appointments
+            list={this.state.appointmentsList}
+          ></Appointments>
+        </div>
+      </Grid>
+    
+    //3.screeen/ members per group
+     <Grid item>
+        <MembersPerGroup
+          showMembers={(this.showMembersInGroup)}
+        ></MembersPerGroup>
+        <Group group={this.state.membersPerGroup}/>
+      </Grid>
+      
+      // render part od Grouplist component 
+       return (
+            <MuiThemeProvider>
+                <React.Fragment>
+                    <Header />
+                    <Paper variant="outlined">
+                        <Tabs
+                            value={this.state.value}
+                            indicatorColor="primary"
+                            textColor="primary" >
+                            <Tab label="Yesterday" />
+                            <Tab label="Today" onClick={this.displayAppontments} />
+                            <Tab label="Costom" />
+                        </Tabs>
+                    </Paper>
+                </React.Fragment>
+            </MuiThemeProvider>
