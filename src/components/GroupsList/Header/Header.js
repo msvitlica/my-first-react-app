@@ -1,29 +1,36 @@
 import React from 'react';
-import { AppBar, Toolbar, IconButton, Typography, } from '@material-ui/core';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@material-ui/core/styles';
+import {AppBar,Toolbar,Typography,IconButton,Button,Avatar} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight:theme.spacing(2)
+  },
+  title:{
+    flexGrow:1,
+  }
+}));
 
-export default class Header extends React.Component {
-  prevStep= e =>{
-    this.props.prevStep();
-  }
-  render() {
-    return (
-      <div>
-        <AppBar style={{ position: 'relative' }}>
-          <Toolbar>
-            <IconButton edge="start" color="inherit" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" >
-              Training Session
-              </Typography>
-            <IconButton className='login' color="inherit" aria-label="login">
-              <AccountCircleIcon />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </div>
-    )
-  }
+export default function Header () {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography className={classes.title} variant="h6">
+            Training session
+          </Typography>
+          <Button>
+          <Avatar src="/broken-image.jpg" />
+          </Button>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }

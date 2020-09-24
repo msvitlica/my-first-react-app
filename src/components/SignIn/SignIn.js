@@ -1,15 +1,13 @@
 import React from 'react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { Typography, Button } from '@material-ui/core';
 import './SignIn.css'
 
 export default class SignIn extends React.Component {
-    continue = e=>{
+    continue = ()=>{
         this.props.nextStep();
     }
     render() {
         return (
-            <MuiThemeProvider>
                 <React.Fragment>
                 <Typography className='signInHeader' variant="h3" >
                     Your Klub</Typography>
@@ -21,7 +19,6 @@ export default class SignIn extends React.Component {
                     <Button onClick={this.continue}  variant="outlined" color="primary">Sign in with Facebook</Button>
                 </div>
                 </React.Fragment>
-            </MuiThemeProvider>
         )
     }
 }

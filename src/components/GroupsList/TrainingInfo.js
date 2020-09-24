@@ -1,5 +1,8 @@
 import React from 'react';
+import uuid from 'react-uuid';
 import SignIn from '../SignIn/SignIn.js';
+import Header from './Header/Header.js';
+import ScheduleBar from './ScheduleBar.js'
 import TrainingSessionsTerms from './TrainingSessionsTerms.js';
 import Group from './Group.js'
 export default class TrainingInfo extends React.Component {
@@ -8,32 +11,50 @@ export default class TrainingInfo extends React.Component {
         this.state = {
             step: 1,
             value:2,
-            term1: '13-17h',
-            term2: '20-21h',
-            coach: 'Sinisa Kovacevic',
-            group1: 'Group1 ',
-            group2: 'Group 4',
-            member1: 'Milan Svitlica',
-            member2: 'Srecko Lazic',
-            member3: 'Nada Jankovic'
+            termInfo: [
+                {
+                    id: uuid(),
+                    term: '13-17h',
+                    coach: 'Sinisa Kovacevic',
+                    group: 'Group 1 ',
+                },
+                {
+                    id: uuid(),
+                    coach: 'Sinisa Kovacevic',
+                    term: '20-21h',
+                    group: 'Group 4',
+                }
+            ],
+           membersInGroup: [
+                {
+                    id: uuid(),
+                    group:'Group 1',
+                    term: '13-17h',
+                    member1:'Milan Svitlica',
+                    member2:'Srecko Lazic',
+                    member3:'Nada Jankovic',
+                }
+            ]
         }
     }
     nextStep = () => {
-        const { step } = this.state;
+        const {step}=this.state;
         this.setState({
             step: step + 1,
         })
+        
     }
     prevStep = () => {
-       // const { step } = this.state;
+       const { step } = this.state;
         this.setState({
-            step: 1 ,
+            step: step - 1 ,
         })
     }
     render() {
-        const { step } = this.state;
-        const { id,value, term1, term2, coach, group1, group2, member1, member2, member3 } = this.state;
-        const values = { id,value, term1, term2, coach, group1, group2, member1, member2, member3 };
+        const {step}=this.state; 
+        const {value}= this.state;
+        const tabValue= {value};
+        //console.log(tabValue);
         switch (step) {
             default:
             case 1:
@@ -44,21 +65,27 @@ export default class TrainingInfo extends React.Component {
                 )
             case 2:
                 return(
-                    <TrainingSessionsTerms
-                        prevStep={this.prevStep}
-                        nextStep={this.nextStep}
-                        values={values}
+                    <div>
+                    <Header/>
+                    <ScheduleBar
+                    tabValue={tabValue}
                     />
+                    <TrainingSessionsTerms
+                        nextStep={this.nextStep}
+                        termInfo={this.state.termInfo}
+                    />
+                    </div>
                 )
             case 3:
-                return (
+                return(
+                <div>
+                <Header/>
                     <Group
-                    prevStep={this.prevStep}
-                    values={values}
+                    membersInGroup={this.state.membersInGroup}
+                    termInfo={this.state.termInfo}
                     />
-                )    
+                    </div>
+                )
         }
     }
 }
-
-

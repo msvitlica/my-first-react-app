@@ -1,35 +1,43 @@
 import React from 'react'
-import { Typography, CardContent, Switch,Card,TextField} from '@material-ui/core';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import Header from './Header/Header.js';
+import { Typography, CardContent, FormGroup,FormControl,FormControlLabel,FormLabel,Card,TextField, Switch } from '@material-ui/core';
 export default class Group extends React.Component {
     render() {
-        const { values } = this.props;
         return (
-            <MuiThemeProvider>
                 <React.Fragment>
-                    <Header/>
-                    <Card style={{ width: 700 }}>
-                    <CardContent >
-                        <Typography color="textPrimary" variant='h6'>
-                            {values.term1} </Typography>
-                            <Typography color="textPrimary" variant='h6'>
-                            {values.group1} </Typography>
-                    </CardContent>
-                    </Card>
-                    <TextField style={{ float: "right",width: 400}} id="outlined-basic"
-                    label="Clanovi" variant="outlined" />
-                    <CardContent style={{ float: "left" }} >
-                        <Typography color="primary" gutterBottom> {values.group1}</Typography>
-                        <Typography> {values.member1}{<Switch/>}</Typography>
-                        <Typography> {values.member2}{<Switch />}</Typography>
-                        <Typography> {values.member3}{<Switch />}</Typography>
-                    </CardContent>
+                    {this.props.membersInGroup.map(el => (
+                        <Card key={el.id} >
+                            <CardContent >
+                                <Typography style={{ float: 'left' }} color="textPrimary" variant='h6'>
+                                    {el.term} ( {el.group})</Typography>
+                            </CardContent>
+                            <TextField style={{ float: 'right' }} id="outlined-basic"
+                                label="Search" variant="filled"/>
+                        </Card>
+                    ))}
+                    {this.props.membersInGroup.map(el => (
+                         <FormControl key={el.id} style={{ float:'left' }}  >
+                         <FormLabel color='primary'>{el.group}</FormLabel>
+                         <FormGroup>
+                           <FormControlLabel
+                            label={el.member1}
+                            labelPlacement="start"
+                            control={<Switch/>}
+                           />
+                            <FormControlLabel
+                            label={el.member2}
+                            labelPlacement="start"
+                             control={<Switch />}
+                           />
+                            <FormControlLabel
+                              label={el.member3}
+                              labelPlacement="start"
+                             control={<Switch/>}
+                           />
+                            </FormGroup>
+                            </FormControl>
+                            ))}
+
                 </React.Fragment>
-            </MuiThemeProvider>
         )
     }
 }
-
-
-
